@@ -13,9 +13,10 @@ import { getDashStyle, isStyleRow } from './util'
 const Dash = (props) => {
 	const isRow = isStyleRow(props.style)
 	const length = isRow ? props.width : props.height
-	const n = Math.ceil(length / (props.dashGap + props.dashLength))
+	const n = ~~(length / (props.dashGap + props.dashLength))
 	const calculatedDashStyles = getDashStyle(props)
-	let dash = []
+	const dash = []
+
 	for (let i = 0; i < n; i++) {
 		dash.push(
 			<View
@@ -27,6 +28,7 @@ const Dash = (props) => {
 			/>
 		)
 	}
+
 	return (
 		<View
 			onLayout={ props.onLayout }
